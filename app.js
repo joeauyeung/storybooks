@@ -5,9 +5,25 @@ const connectDB = require("./config/db");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
+const passport = require("passport");
+const session = require("express-session");
 
 // Connect to database
 connectDB()
+
+// Passport config
+require("./config/passport")(passport)
+
+// Express sessions
+app.use(session({
+    secret: "practice app",
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Initiate app and EJS
 const app = express();
