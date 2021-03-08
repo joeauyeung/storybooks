@@ -10,13 +10,27 @@ module.exports = (passport) => {
     },
     async (accessToken, refreshToken, profile, done) => {
         console.log(profile);
-        User.findOrCreate({
+        const newUser = {
             googleId: profile.id,
             displayName: profile.displayName,
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
             image: profile.photos[0].value
-        }, (err, user) => done(err, user))
+        }
+
+        try {
+            let user = await  User.findOne({ googleId: profile.id })
+
+            if (user) {
+                done(null, user)
+            } else {
+                user = await User.create(newUser);
+                done(null, user)
+            }
+        } catch (err) {
+            console.log(err);
+        }
+
         }
     ));
 
