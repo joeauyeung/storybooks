@@ -27,4 +27,7 @@ const UserSchema = new mongoose.Schema({
     
 });
 
+// Enable plugin for findOrCreate for Google auth
+UserSchema.plugin(require("mongoose-findorcreate"));
+
 module.export = mongoose.model("User", UserSchema);

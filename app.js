@@ -14,6 +14,10 @@ connectDB()
 // Passport config
 require("./config/passport")(passport)
 
+// Initiate app and EJS
+const app = express();
+app.set("view engine", "ejs");
+
 // Express sessions
 app.use(session({
     secret: "practice app",
@@ -25,9 +29,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Initiate app and EJS
-const app = express();
-app.set("view engine", "ejs");
 
 // Static folder
 app.use(express.static(path.join(__dirname, "public")))
@@ -39,8 +40,8 @@ if (process.env.NODE_ENV === "development") {
 
 // Routes
 app.use("/", require("./routes/index"));
+app.use("/auth", require("./routes/auth"));
 
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));

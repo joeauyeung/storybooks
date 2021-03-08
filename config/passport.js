@@ -10,7 +10,15 @@ module.exports = (passport) => {
     },
     async (accessToken, refreshToken, profile, done) => {
         console.log(profile);
-    }));
+        User.findOrCreate({
+            googleId: profile.id,
+            displayName: profile.displayName,
+            firstName: profile.name.givenName,
+            lastName: profile.name.familyName,
+            image: profile.photos[0].value
+        }, (err, user) => done(err, user))
+        }
+    ));
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
