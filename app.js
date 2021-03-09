@@ -7,7 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const passport = require("passport");
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo").default;
 const connectDB = require("./config/db");
 
 // Connect to database
@@ -20,12 +20,17 @@ require("./config/passport")(passport)
 const app = express();
 app.set("view engine", "ejs");
 
-// Express sessions
+// Sessions
+
+
 app.use(session({
     secret: "practice app",
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        collectionName: "sessions"
+    })
 }));
 
 // Passport middleware
