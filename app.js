@@ -1,12 +1,14 @@
 require("dotenv").config({path: "./config/config.env"});
 
 const express = require("express");
-const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const connectDB = require("./config/db");
 
 // Connect to database
 connectDB()
@@ -22,7 +24,8 @@ app.set("view engine", "ejs");
 app.use(session({
     secret: "practice app",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 // Passport middleware
