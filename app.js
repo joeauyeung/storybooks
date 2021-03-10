@@ -20,9 +20,11 @@ require("./config/passport")(passport)
 const app = express();
 app.set("view engine", "ejs");
 
+// Body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // Sessions
-
-
 app.use(session({
     secret: "practice app",
     resave: false,
