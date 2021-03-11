@@ -1,0 +1,37 @@
+<%- include("../partials/header") %>
+<h3>Edit Story</h3>
+<div class="row" id="add-story-area">
+    <form action="/stories" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="title" name="title" value="<%= story.title %>">
+                <label for="title">Title</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field">
+                <select name="status" id="status">
+                    <option value="public" <% if (story.status === "public") { %> selected <% } %> >Public</option>
+                    <option value="private" <% if (story.status === "private") { %> selected <% } %>>Private</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell Us Your Story:</h5>
+                <textarea name="body" id="body" cols="30" rows="10"><%= story.body %></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Save" class="btn">
+            <a href="/dashbaord" class="btn orange">Cancel</a>
+        </div>
+    </form>
+</div>
+
+
+<%- include("../partials/footer") %> 

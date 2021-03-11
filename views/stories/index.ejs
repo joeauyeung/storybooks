@@ -9,7 +9,7 @@
                     <div class="card-image">
                         <!-- Need to convert story user ID since it is an object and userID is a string -->
                         <% if (String(story.user._id) === userId) { %>
-                             <a href="/stories/edit/<% story._id %> " class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>
+                             <a href="/stories/edit/<%= story._id %> " class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>
                         <% } %> 
 
                     </div>
