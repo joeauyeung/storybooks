@@ -9,6 +9,7 @@ const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 const connectDB = require("./config/db");
+const methodOverride = require("method-override");
 
 // Connect to database
 connectDB()
@@ -23,6 +24,16 @@ app.set("view engine", "ejs");
 // Body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Method override
+app.use(methodOverride((req, res) => {
+    if (req.body && typeof req.body === "object" && "_method" in req.body) {
+        // look in urlencoded POST bodies and delete it 
+        let method = req.body._method;
+        delete req.body._method
+        return method;
+    }
+}))
 
 // Sessions
 app.use(session({

@@ -47,7 +47,7 @@ router.get("/", ensureAuth, async(req, res) => {
 })
 
 // @desc    Show edit story page
-// @route GET /stories/edit/:id
+// @route   GET /stories/edit/:id
 router.get("/edit/:id", ensureAuth, async (req, res) => {
     const story = await Story.findOne({ _id: req.params.id }).lean();
 
@@ -64,5 +64,27 @@ router.get("/edit/:id", ensureAuth, async (req, res) => {
         });
     }
 });
+
+// @desc    Update story
+// @route   PUT /stories/:id
+
+router.put("/:id", ensureAuth, async (req, res) => {
+    let story = await Story.findById(req.params.id).lean();
+
+    if (!story) {
+        return res.render("error/404");
+    }
+
+    if (String(story.user) !== req.user.id) {
+        res.redirect("/stories");
+    } else {
+        story = await Story.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+            runValidators: true
+        });
+    }
+
+    res.redirect("/stories");
+})
 
 module.exports = router;
