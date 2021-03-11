@@ -1,0 +1,27 @@
+<%- include("../partials/header") %>
+
+<div class="row">
+    <div class="col s12 m8">
+        <h3> <%= story.title %> </h3>
+        <div class="card story">
+            <div class="card-content">
+                <span class="card-title"><%= new Intl.DateTimeFormat("default", { month: "long", day: "numeric", year:"numeric", hour:"numeric", minute:"numeric" }).format(story.createdAt) %></span>
+                <p><%= story.body.substring(3, story.body.length-29) %> </p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <span class="card-title"><%= story.user.displayName %> </span>
+                <img src="<%= story.user.image %>" alt="" class="circle responsive-img img-small">
+            </div>
+            <div class="card-action">
+                <a href="/stories/user/<%= story.user._id %> ">More From <%= story.user.firstName %> </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %> 
