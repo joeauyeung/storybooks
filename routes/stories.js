@@ -36,9 +36,10 @@ router.get("/", ensureAuth, async(req, res) => {
             .lean();
 
         res.render("stories/index", {
+            userId: req.user.id,
             stories: stories
         })
-
+        
     } catch (error) {
         console.error(error);
         res.render("error/500");

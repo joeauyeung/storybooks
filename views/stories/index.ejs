@@ -7,15 +7,19 @@
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
-                        <!-- todo: editIcon -->
+                        <!-- Need to convert story user ID since it is an object and userID is a string -->
+                        <% if (String(story.user._id) === userId) { %>
+                             <a href="/stories/edit/<% story._id %> " class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>
+                        <% } %> 
+
                     </div>
                     <div class="card-content center-align">
                         <h5><%= story.title %> </h5>
-                        <p><%= story.body %> </p>
+                        <p><%= story.body.substring(3,100) %> ... </p>
                         <br>
                         <div class="chip">
                             <img src=<%= story.user.image %> alt="">
-                            <a href="/stories/user/<%= story.user.id %>"><%= story.user.displayName %> </a>
+                            <a href="/stories/user/<%= story.user._id %>"><%= story.user.displayName %> </a>
                         </div>
                     </div>
                     <div class="card-action center-align">
@@ -24,9 +28,10 @@
                 </div>
             </div>
         <% }) %> 
-    } else { %> 
+     <% } else { %> 
         <p>No stories to display</p>
     <% } %> 
 </div>
 
+<%- include("../partials/add_button") %> 
 <%- include("../partials/footer") %> 
