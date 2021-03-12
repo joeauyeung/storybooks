@@ -4,8 +4,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+    brandname: {
+        marginLeft: "10px",
+        fontSize: "25px"
+    }
+})
 
 export default function Navbar() {
+    const classes = useStyles();
 
     return (
         <div>
@@ -14,7 +23,7 @@ export default function Navbar() {
                     <IconButton edge="start">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6">
+                    <Typography variant="h6" className={ classes.brandname }>
                         StoryBooks
                     </Typography>
                 </Toolbar>
