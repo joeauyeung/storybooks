@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaBookReader } from "react-icons/fa"
 import { makeStyles } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
     card: {
@@ -37,6 +38,7 @@ export default function LoginCard() {
                 Create public and private stories form your life
             </Typography>
         </CardContent>
+        <Divider />
         <CardActions className={ classes.actionArea }>
            <Button variant="contained" startIcon={ <FcGoogle/> }>Login with Google</Button> 
         </CardActions>

@@ -2,7 +2,7 @@ import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import LoginCard from "./LoginCard";
 import Dashboard from "./Dashboard/Dashboard";
 
