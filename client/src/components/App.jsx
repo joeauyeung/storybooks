@@ -18,21 +18,13 @@ const theme  = createMuiTheme({
     }
 })
 
-const useStyles = makeStyles({
-    navbar: {
-        marginTop: "50px"
-    }
-})
 
 function App() {
-    const classes = useStyles();
     return (
     <ThemeProvider theme={ theme }>
         <Router>
-        <div className={ classes.navbar }>
             <Navbar/>
             <LoginCard/>
-        </div>
         </Router>
 
     </ThemeProvider>
