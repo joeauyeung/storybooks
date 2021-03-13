@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import LoginCard from "./LoginCard";
+import Dashboard from "./Dashboard/Dashboard";
 
 
 // Create the theme colors
@@ -24,7 +25,9 @@ function App() {
     <ThemeProvider theme={ theme }>
         <Router>
             <Navbar/>
-            <LoginCard/>
+            <Route path="/" exact component={ LoginCard } />
+            <Route path="/dashboard" component={ Dashboard } />
+            
         </Router>
 
     </ThemeProvider>
