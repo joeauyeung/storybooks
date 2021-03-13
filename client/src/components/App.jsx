@@ -1,7 +1,9 @@
 import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./Navbar";
+import LoginCard from "./LoginCard";
 
 
 // Create the theme colors
@@ -26,10 +28,13 @@ function App() {
     const classes = useStyles();
     return (
     <ThemeProvider theme={ theme }>
+        <Router>
         <div className={ classes.navbar }>
-            <Navbar  />
-            <h1>Hello world!</h1>
+            <Navbar/>
+            <LoginCard/>
         </div>
+        </Router>
+
     </ThemeProvider>
 
     )
