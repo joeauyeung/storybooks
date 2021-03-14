@@ -23,8 +23,8 @@ const theme  = createMuiTheme({
 function App() {
     return (
     <ThemeProvider theme={ theme }>
+        <Router>    
         <Navbar/>
-        <Router>
             <Switch>
                 <Route path="/" exact component={ LoginCard } />
                 <Route path="/dashboard" component={ Dashboard } />

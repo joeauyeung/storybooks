@@ -9,12 +9,14 @@ import { RiDashboardLine } from "react-icons/ri";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     listMargin: {
         marginTop: "60px"
     }
 })
+
 
 export default function NavDrawer(props) {
     const classes = useStyles();
@@ -28,15 +30,18 @@ export default function NavDrawer(props) {
     const navItems = [
         {
             text: "Public Stories",
-            icon: <BiBookAlt/>
+            icon: <BiBookAlt/>,
+            link: "/"
         },
         {
             text: "Dashboard",
-            icon: <RiDashboardLine/>
+            icon: <RiDashboardLine/>,
+            link: "/dashboard"
         },
         {
             text: "Logout",
-            icon: <BiLogOut/>
+            icon: <BiLogOut/>,
+            link: "/"
         }
     ]
 
@@ -48,13 +53,17 @@ export default function NavDrawer(props) {
     <Drawer open={ toggleOpenDrawer } onClose={ toggleDrawer(false) }>
         <List className={ classes.listMargin }>
             {navItems.map(item => {
-                const { text, icon } = item;
+                const { text, icon, link } = item;
+
 
                 return(
-                <ListItem>
-                    <ListItemIcon children={ icon }/>
-                    <ListItemText primary={ text } />
-                </ListItem>
+                <Link to={ link }>
+                    <ListItem onClick={ toggleDrawer(false) }>
+                        <ListItemIcon children={ icon }/>
+                        <ListItemText primary={ text } />
+                    </ListItem>
+                </Link>
+                
             )})}
         </List>
     </Drawer>
