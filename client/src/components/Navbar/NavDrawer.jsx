@@ -25,6 +25,21 @@ export default function NavDrawer(props) {
         setToggleOpenDrawer(open);
     }
 
+    const navItems = [
+        {
+            text: "Public Stories",
+            icon: <BiBookAlt/>
+        },
+        {
+            text: "Dashboard",
+            icon: <RiDashboardLine/>
+        },
+        {
+            text: "Logout",
+            icon: <BiLogOut/>
+        }
+    ]
+
     return(
     <>
     <IconButton edge="start" onClick={ toggleDrawer(true) }>
@@ -32,30 +47,15 @@ export default function NavDrawer(props) {
     </IconButton>
     <Drawer open={ toggleOpenDrawer } onClose={ toggleDrawer(false) }>
         <List className={ classes.listMargin }>
-        <ListItem>
-            <ListItemIcon>
-                <BiBookAlt/>
-            </ListItemIcon>
-            <ListItemText>
-                Public Stories
-            </ListItemText>
-        </ListItem>
-        <ListItem>
-            <ListItemIcon>
-                <RiDashboardLine/>
-            </ListItemIcon>
-            <ListItemText>
-                Dashboard
-            </ListItemText>
-        </ListItem>
-        <ListItem>
-            <ListItemIcon>
-                <BiLogOut/>
-            </ListItemIcon>
-            <ListItemText>
-                Logout
-            </ListItemText>
-        </ListItem>
+            {navItems.map(item => {
+                const { text, icon } = item;
+
+                return(
+                <ListItem>
+                    <ListItemIcon children={ icon }/>
+                    <ListItemText primary={ text } />
+                </ListItem>
+            )})}
         </List>
     </Drawer>
     </>
