@@ -57,12 +57,10 @@ export default function NavDrawer(props) {
 
 
                 return(
-                <Link to={ link }>
-                    <ListItem onClick={ toggleDrawer(false) }>
+                    <ListItem component={ Link } to={ link } onClick={ toggleDrawer(false) }>
                         <ListItemIcon children={ icon }/>
                         <ListItemText primary={ text } />
                     </ListItem>
-                </Link>
                 
             )})}
         </List>
