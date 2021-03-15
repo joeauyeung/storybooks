@@ -14,6 +14,10 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
     listMargin: {
         marginTop: "60px"
+    },
+    linkText: {
+        textDecoration: "none",
+        color: "inherit"
     }
 })
 
@@ -57,7 +61,7 @@ export default function NavDrawer(props) {
 
 
                 return(
-                    <ListItem component={ Link } to={ link } onClick={ toggleDrawer(false) }>
+                    <ListItem component={ Link } to={ link } onClick={ toggleDrawer(false) } className={ classes.linkText }>
                         <ListItemIcon children={ icon }/>
                         <ListItemText primary={ text } />
                     </ListItem>

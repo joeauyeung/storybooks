@@ -4,8 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "prod_backend": "cd backend && cross-env NODE_ENV=production node app",
+    "dev_backend": "cd backend && cross-env NODE_ENV=development nodemon app",
+    "prod_frontend": "cd client && npm run build",
+    "dev_frontend": "cd client && npm start",
+    "prod": "concurrently \"npm run prod_backend\" \"npm run prod_frontend\"",
+    "dev": "concurrently \"npm run dev_backend\" \"npm run dev_frontend\""
   },
   "keywords": [],
   "author": "",
